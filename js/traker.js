@@ -27,7 +27,6 @@ function init() {
 
     issMarkerIcon = L.divIcon({
         className: 'issMarkerIcon',
-        html: '<img width="50" height="38" src="img/issMarkerIcon.svg" style="-webkit-transform: rotate(0deg); -moz-transform: rotate(0deg); -webkit-backface-visibility: hidden;"/>',
         iconSize: L.point(50, 38)
     });
 
@@ -104,7 +103,7 @@ function issFootprintControl(lat = data.latitude, lng = data.longitude, alt = da
 function gpsControl() {
 
     if (window.document.getElementById('chkGps').checked) {
-        worldMap.locate({ watch: false, setView: true, maxZoom: worldMap.getZoom() });
+        worldMap.locate({watch: false, setView: true, maxZoom: worldMap.getZoom()});
         worldMap.on('locationfound', onLocateFound);
     } else {
         worldMap.stopLocate();
