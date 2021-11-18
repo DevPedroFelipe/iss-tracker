@@ -77,6 +77,7 @@ function loadData() {
     });
 }
 
+// Método responsável pelo controle da centralização travada da ISS no mapa.
 function issLockOnControl(lat = data.latitude, lng = data.longitude) {
     if (document.getElementById('chkLockOn').checked) {
         worldMap.setView([lat, lng], worldMap.getZoom());
@@ -88,6 +89,7 @@ function issLockOnControl(lat = data.latitude, lng = data.longitude) {
     }
 }
 
+// Método responsável pelo controle da área de visibilidade da ISS.
 function issFootprintControl(lat = data.latitude, lng = data.longitude, alt = data.altitude) {
     if (document.getElementById('chkFootprint').checked) {
         updateIssFootprint(lat, lng, alt);
@@ -135,7 +137,7 @@ function updateIss(lat, lng) {
     }
 }
 
-// Método responsável pela atualização da área visibilidade da ISS.
+// Método responsável pela atualização da área de visibilidade da ISS.
 function updateIssFootprint(lat, lng, alt) {
 
     // Calculando a área visível da Terra através da altura da ISS.
@@ -372,7 +374,7 @@ function issBearing(p1,p2) {
     -webkit-backface-visibility: hidden;" />`;
 }
 
-// Método responsável por calcular o ponto médio entre duas coordenadas geográficas.
+// Método responsável por calcular o ponto médio entre coordenadas geográficas.
 function calcMiddlePoints(array) {
 
     let middlePoints = Array();
