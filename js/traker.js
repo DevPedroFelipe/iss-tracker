@@ -221,18 +221,14 @@ function overlayDayNight() {
 // Método responsável por calcular futuras timestamps.
 function calcTimestamps(timestamp, value) {
 
-    let array = Array();
-    let timestamps = timestamp + ',';
-
-    array.push(timestamp);
+    let timestamps = timestamp + ",";
 
     for (i = 1; i <= 9; i++) {
-        array.push(array[i - 1] + value);
+        
+        let add = timestamp + (value * i);
 
-        i != 9 ? timestamps += array[i] + ',' : timestamps += array[i];
-
+        i != 9 ? timestamps += add + ',' : timestamps += add;
     }
- 
     return timestamps;
 }
 
