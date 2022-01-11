@@ -8,7 +8,7 @@ html, body {
 
 div.container {
     margin-top: 1%;
-    border-radius: 10px;
+    border-radius: 10px 10px 0 0;
 }
 
 nav.navbar {
@@ -82,7 +82,11 @@ img#imgVisibility {
     width: 20%;
 }
 
-label#issTracker {
+label.lblPanel  {
+    width: 80%;
+}
+
+label#lblNavbarBrand {
     font-family: NewSpace;
     font-size: 85%;
     float: left;

@@ -79,6 +79,7 @@ function loadData() {
 
 // Método responsável pelo controle da centralização travada da ISS no mapa.
 function issLockOnControl(lat = data.latitude, lng = data.longitude) {
+
     if (document.getElementById('chkLockOn').checked) {
         worldMap.setView([lat, lng], worldMap.getZoom());
         worldMap.dragging.disable();
@@ -91,6 +92,7 @@ function issLockOnControl(lat = data.latitude, lng = data.longitude) {
 
 // Método responsável pelo controle da área de visibilidade da ISS.
 function issFootprintControl(lat = data.latitude, lng = data.longitude, alt = data.altitude) {
+
     if (document.getElementById('chkFootprint').checked) {
         updateIssFootprint(lat, lng, alt);
         var timeout = setTimeout(issFootprintControl, 1000);
@@ -172,7 +174,7 @@ function updateDataPanel(data) {
 
     let imgVisibility = document.getElementById('imgVisibility');
 
-    let visibility;
+    let visibility = '';
 
     if (data.visibility == 'daylight') {
         imgVisibility.src = 'img/sunVisi.ico';
@@ -196,7 +198,7 @@ function getData(httpMethod, URL, callback, callbackError) {
     request.open(httpMethod, URL);
     request.responseType = 'json';
     request.send();
-    request.onload = function () {
+    request.onload = () => {
         if (request.readyState === 4 && request.status === 200) {
             callback(request.response);
         } else {
@@ -204,7 +206,7 @@ function getData(httpMethod, URL, callback, callbackError) {
         }
     }
 
-    request.onerror = function () {
+    request.onerror = () => {
         callbackError(request.status, request.statusText);
     }
 }
@@ -264,9 +266,7 @@ function calcOrbitPath(timestamp = data.timestamp) {
                 }
                 
                 // Criando Layers e adicionando os pontos de órbita no mapa.
-                orbit.forEach(function(point) {
-                    issPath.addLayer(L.circle(point, {color: 'yellow', opacity: 0.5}));
-                });
+                orbit.forEach(point => issPath.addLayer(L.circle(point, {color: 'yellow', opacity: 0.5})));
 
                 issPath.addTo(worldMap);
             });
@@ -284,8 +284,8 @@ function updateOrbitPass(lng) {
 
     for (i = 0; i <= issPath.getLayers().length-1; i++) {
 
-        let orbLon = issPath.getLayers()[i]._latlng.lng;
-        let issLon = lng;
+        const orbLon = issPath.getLayers()[i]._latlng.lng;
+        const issLon = lng;
             
         if (Math.abs((orbLon) - (issLon)) <= 0.2) {
             
@@ -316,11 +316,13 @@ function updateOrbitPath() {
 
 // Método responsável por converter valor para radianos.
 function toRad(n) {
+
     return n * Math.PI / 180;
 }
 
 // Método responsável por converter valor para graus.
 function toDeg(n) {
+    
     return n * 180 / Math.PI;
 }
 
