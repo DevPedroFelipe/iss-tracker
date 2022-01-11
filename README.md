@@ -1,10 +1,25 @@
-# ISS Tracker - Rastreador da Estação Espacial Internacional 
+# ISS Tracker - Rastreador da Estação Espacial Internacional
+
+#### Descrição do projeto:
 
 Rastreador que mostra em tempo real a localização da `EEI - Estação Espacial Internacional` (em inglês: `ISS - International Space Station`), calcula sua órbita futura, superfície visível e a localização GPS(Global Positioning System) do obervador na terra.
 
-A ISS é uma `estação espacial modular habitável` que tem como propósito ser um moderno laboratório, encontra-se em órbita da Terra a uma altitude de aproximadamente 400km, uma órbita tipicamente designada de órbita terrestre baixa.
+#### Ferramentas e Tecnologias utilizadas:
 
-![](screenshots/iss-tracker2.png)
+* JavaScript
+* HTML 5
+* CSS 3
+* Bootstrap 5
+
+Foi consumida a API [Where the ISS at?](https://wheretheiss.at/w/developer) para obter os dados necessários.
+
+<img src="https://github.com/DevPedroFelipe/iss-tracker/blob/master/screenshots/iss-tracker.png" style="width: 800px">
+
+#### O que é a ISS?
+
+A ISS é uma `estação espacial modular habitável` que tem como propósito ser um moderno laboratório, encontra-se em órbita terrestre baixa a uma altitude de aproximadamente 400km.
+
+<img src="https://github.com/DevPedroFelipe/iss-tracker/blob/master/screenshots/iss.png" style="width: 800px">
 
 #### Músicas que me inspiraram durante o desenvolvimento do projeto:
 
