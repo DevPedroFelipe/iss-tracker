@@ -8,6 +8,7 @@ html, body {
 
 div.container {
     margin-top: 1%;
+    padding-top: 1%;
     border-radius: 10px 10px 0 0;
 }
 
@@ -34,7 +35,6 @@ div#worldMap {
     width: 79%;
     float: left;
     border: groove;
-    margin-top: 1%;
 }
 
 span.badge {
@@ -51,7 +51,6 @@ div#dataPanel {
     text-align: center;
     border: groove;
     margin-left: 1px;
-    margin-top: 1%;
 }
 
 @font-face {

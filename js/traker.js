@@ -52,7 +52,7 @@ function init() {
 // Método responsável por carregar os dados da ISS.
 function loadData() {
 
-    getData('GET', 'https://api.wheretheiss.at/v1/satellites/25544', function (data) {
+    getData('https://api.wheretheiss.at/v1/satellites/25544', 'GET', function (data) {
 
         this.data = data;
 
@@ -62,7 +62,8 @@ function loadData() {
 
         setTimeout(loadData, 1000);
 
-    }, function (status, statusText) {
+    }, function (error) {
+        
         document.getElementById('message').innerHTML =
             '<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">'
                 + '<symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">'
@@ -71,7 +72,7 @@ function loadData() {
             + '</svg>'
             + '<div class="alert alert-danger alert-dismissible fade show" role="alert">'
                 + '<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>'
-                + `<strong>Erro!</strong> An error occurred while trying to load data: ${status} ${statusText}`
+                + `<strong>${error}</strong> - Unfortunately we were unable to load the data.`
                 + '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>'
             + '</div>';
     });
@@ -192,23 +193,18 @@ function updateDataPanel(data) {
 }
 
 // Método responsável por pegar os dados.
-function getData(httpMethod, URL, callback, callbackError) {
+function getData(URL, method, callback, callbackError) {
 
-    let request = new XMLHttpRequest();
-    request.open(httpMethod, URL);
-    request.responseType = 'json';
-    request.send();
-    request.onload = () => {
-        if (request.readyState === 4 && request.status === 200) {
-            callback(request.response);
+    fetch(URL, {method}).then(response => {
+
+        if(response.status === 200) {
+            response.json().then(data => callback(data));
         } else {
-            callbackError(request.status, request.statusText);
+            throw new Error(`${response.status} ${response.statusText}`);
         }
-    }
 
-    request.onerror = () => {
-        callbackError(request.status, request.statusText);
-    }
+    }).catch(error => callbackError(error));
+
 }
 
 // Método responsável pela sobreposição de dia/noite no mapa.
@@ -245,7 +241,7 @@ function calcOrbitPath(timestamp = data.timestamp) {
 
             let timestamps = calcTimestamps(timestamp, 700);
 
-            getData('GET', `https://api.wheretheiss.at/v1/satellites/25544/positions?timestamps=${timestamps}&units=kilometers`, function (data) {
+            getData(`https://api.wheretheiss.at/v1/satellites/25544/positions?timestamps=${timestamps}&units=kilometers`, 'GET', function (data) {
                 let orbit = Array();
 
                 // Laço responsável por converter as coordenadas geográficas para latLang e adiconar no array de órbita.
